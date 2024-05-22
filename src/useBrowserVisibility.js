@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 const useBrowserVisibility = () => {
-    const [isVisible, setIsVisible] = useState( true );
+    const [isVisible, setIsVisible] = useState( !document.hidden );
 
     useEffect( () => {
         const handleVisibilityChange = () => {
