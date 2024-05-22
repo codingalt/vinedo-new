@@ -10,15 +10,24 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import usePageVisibility from "./usePageVisibility";
 import usePreventScreenshot from "./usePreventScreenshot.js";
+import useBrowserVisibility from "./useBrowserVisibility.js";
 const App = () => {
   usePageVisibility();
+  const isBrowserVisible = useBrowserVisibility();
   usePreventScreenshot() // Use the custom hook
 
   return (
     <GoogleOAuthProvider clientId="1055637407106-j4lkpqr2me552nqe7iu3ic17ru9svebc.apps.googleusercontent.com">
     <Provider store={store}>
       <NextUIProvider>
-        <RouterProvider router={router} />
+       
+        {isBrowserVisible ? (
+              // Your app content here
+              <RouterProvider router={router} />
+            ) : (
+              // Blackout overlay
+              <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'black' }} />
+            )}
       </NextUIProvider>
     </Provider>
   </GoogleOAuthProvider>
