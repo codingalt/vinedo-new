@@ -1,22 +1,28 @@
-// useBrowserVisibility.js
+// useBrowserFocus.js
 import { useEffect, useState } from 'react';
 
-const useBrowserVisibility = () => {
-    const [isVisible, setIsVisible] = useState( !document.hidden );
+const useBrowserFocus = () => {
+    const [isFocused, setIsFocused] = useState( true );
 
     useEffect( () => {
-        const handleVisibilityChange = () => {
-            setIsVisible( !document.hidden );
+        const handleFocus = () => {
+            setIsFocused( true );
         };
 
-        document.addEventListener( 'visibilitychange', handleVisibilityChange );
+        const handleBlur = () => {
+            setIsFocused( false );
+        };
+
+        window.addEventListener( 'focus', handleFocus );
+        window.addEventListener( 'blur', handleBlur );
 
         return () => {
-            document.removeEventListener( 'visibilitychange', handleVisibilityChange );
+            window.removeEventListener( 'focus', handleFocus );
+            window.removeEventListener( 'blur', handleBlur );
         };
     }, [] );
 
-    return isVisible;
+    return isFocused;
 };
 
-export default useBrowserVisibility;
+export default useBrowserFocus;
