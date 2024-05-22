@@ -9,8 +9,10 @@ import { store } from "./store/store.js";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import usePageVisibility from "./usePageVisibility";
+import usePreventScreenshot from "./usePreventScreenshot.js";
 const App = () => {
-  usePageVisibility(); // Use the custom hook
+  usePageVisibility();
+  usePreventScreenshot() // Use the custom hook
 
   return (
     <GoogleOAuthProvider clientId="1055637407106-j4lkpqr2me552nqe7iu3ic17ru9svebc.apps.googleusercontent.com">

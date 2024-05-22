@@ -117,5 +117,19 @@ body.background-hidden::before {
   background: black;
   z-index: 9999;
 }
+body.no-screenshot {
+  position: relative;
+}
 
+body.no-screenshot::before {
+  content: " ";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent overlay */
+  z-index: 9999;
+  pointer-events: none;
+}
 
